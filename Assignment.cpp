@@ -117,6 +117,20 @@ void Assignment::changeDueDate(string newDueDate)
 	DueDate = Date(newDueDate, US);//uses the built in parsing and date validation of the date class
 }
 
+//converts a string to a status
+AssignStatus Assignment::makeStatus(string stringStatus)
+{
+	//couldn't make switch work so made ugly if statements
+	if(stringStatus == "Assigned")
+		return AssignStatus::Assigned;
+	else if(stringStatus == "Complete")
+		return AssignStatus::Complete;
+	else if(stringStatus == "Late")
+		return AssignStatus::Late;
+	else
+		throw std::exception("Invalid Status");
+}
+
 //defines < operator for use in Assignment class to make ordering assignments easier
 bool Assignment::operator <(const Assignment& other) const
 {

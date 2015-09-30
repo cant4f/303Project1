@@ -26,6 +26,7 @@ public:
 	void completeAssignment(Date completeDate);
 	void changeDescription(string newDescrip);
 	void changeDueDate(string newDueDate);
+	AssignStatus makeStatus(string stringStatus);//added so that the constructor could have a string of the status passed in
 	bool operator <(const Assignment& other) const;
 	bool operator ==(const Assignment& other) const;
 private:

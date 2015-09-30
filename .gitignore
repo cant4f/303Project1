@@ -4,3 +4,11 @@
 303Project1VS.vcxproj
 303Project1VS.sln
 303Project1VS.vcxproj.filters
+*.lastbuildstate
+Debug/303Project1VS.log
+*.pdb
+Debug/303Project1VS.unsuccessfulbuild
+*.obj
+Debug/cl.command.1.tlog
+*.tlog
+Debug/vc110.idb
