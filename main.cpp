@@ -6,6 +6,8 @@
 //#include "AssignStatus.h"
 #include "Date.h"
 #include "StringTokenizer.h"
+#include "Ordered_List.h"
+//#include "list.h"
 
 using namespace std;
 
@@ -13,10 +15,53 @@ using namespace std;
 //all of this was me just trying to correctly parse an example of a line of data and make assignments from it
 int main()
 {
+	Ordered_List<Assignment> AsignedAssignments;//to hold incomplete assignments
+	Ordered_List<Assignment> CompletedAssignments;//to hold complete or late assignments
+
+	string filename;
+	string textline;
+	string due,description,assigned,status;//to use to pass into the constructor
+	String_Tokenizer LineParser(textline,",");
+	int index=0;//to use for parsing the lines of the textfile
+	ifstream fin;
+	ofstream fout;
+
+	cout<<"Please enter text file name to populate lists from without the .txt extension: ";
+	cin>>filename;
+	fin.open(filename+".txt");//need to add error handling around this
+	
+	while(!fin.eof())
+	{
+		textline = fin.get();
+		while(LineParser.has_more_tokens())//parses the textline, should make separate function
+		{
+		switch(index)
+		{
+		case 0:
+			std::istringstream(LineParser.next_token())>>due;
+			break;
+		case 1:
+			std::istringstream(LineParser.next_token())>>description;
+			break;
+		case 2:
+			std::istringstream(LineParser.next_token())>>assigned;
+			break;
+		case 3:
+			std::istringstream(LineParser.next_token())>>status;
+		}
+		++index;
+		}
+		if(status == "Assigned")
+			AsignedAssignments.insert(Assignment(due,description,assigned,status));
+		else
+			CompletedAssignments.insert(Assignment(due,description,assigned,status));
+		index = 0;
+	}
+
 	/*string Due;
 	string assigned;
 	string description;
-	string allofit;
+	string textline;
 
 	cout<<"Please enter the data in the following manner: DueDate,Description,AssignDate with dates formatted as MM/DD/YYYY"<<endl;
 	allofit = "12/03/1995,whodat,04/20/1995";//typing all this in myself got annoying
@@ -66,7 +111,7 @@ int main()
 
 	bool still_in_menu = true;
 
-	ofstream fout("assignments.txt");
+	//ofstream fout("assignments.txt");
 
 	while (still_in_menu)
 	{

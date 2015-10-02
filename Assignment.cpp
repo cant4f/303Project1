@@ -17,10 +17,10 @@ Assignment::Assignment()
 }
 
 //allows user to 
-Assignment::Assignment(string due, string descrip, string assigned, AssignStatus status)
+Assignment::Assignment(string due, string descrip, string assigned, string status)
 {
 	Description = descrip;
-	AssignmentStatus = status;//look into doing this having had a string passed in
+	AssignmentStatus = makeStatus(status);//look into doing this having had a string passed in
 	//possible error handling?
 	try
 	{

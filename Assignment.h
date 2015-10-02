@@ -16,7 +16,7 @@ class Assignment
 {
 public:
 	Assignment();
-	Assignment(string due, string descrip, string assigned, AssignStatus status);//should i change to allow status to be passed in as string?
+	Assignment(string due, string descrip, string assigned, string status);//should i change to allow status to be passed in as string?
 	Assignment(const Assignment& original); //copy constructor to make placing assignment in a different list easier
 	AssignStatus getStatus();
 	const string getStringStatus();//added so that you could also have a string value for printing
